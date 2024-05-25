@@ -1,0 +1,32 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.define "db" do |db|
+    db.vm.hostname = "db-server"
+    db.vm.box = "bento/ubuntu-22.04"
+    db.vm.provision :shell, path: "./db/bootstrap.sh"
+    db.vm.network "private_network", ip: "192.168.56.10"
+  end
+
+  config.vm.define "lb" do |lb|
+    lb.vm.hostname = "lb-server"
+    lb.vm.box = "bento/ubuntu-22.04"
+    lb.vm.provision :shell, path: "./lb/bootstrap.sh"
+    lb.vm.network "private_network", ip: "192.168.56.40"
+  end
+  
+  (1..2).each do |i|
+    config.vm.define "api_#{i}" do |api|
+      api.vm.hostname = "api-server"
+      api.vm.box = "bento/ubuntu-22.04"
+      api.vm.provision :shell, path: "./api/bootstrap.sh"
+      api.vm.provision :shell, path: "./api/run.sh", run: "always"
+      api.vm.network "private_network", ip: "192.168.56.#{i+1}0"
+    end 
+  end
+  
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024" # MB
+  end
+end
