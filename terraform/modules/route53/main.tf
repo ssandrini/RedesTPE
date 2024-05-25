@@ -22,3 +22,11 @@ resource "aws_route53_record" "www" {
     aws_route53_record.domain_record
   ]
 }
+
+resource "aws_route53_record" "cname_route53_record" {
+  zone_id = data.aws_route53_zone.prebuilt_hosted_zone.zone_id
+  name    = "api.${var.domain_name}"
+  type    = "CNAME"
+  ttl     = 900
+  records = [aws_lb.MYALB.dns_name]
+}
