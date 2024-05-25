@@ -1,6 +1,12 @@
 module "vpc" {
   source = "../modules/vpc"
-  user_data = "../resources/user_data.sh"
+}
+
+module "api" {
+  source      = "../modules/api"
+  user_data   = "../resources/user_data.sh"
+  main_vpc_id = module.vpc.main_vpc_id
+  subnets_ids = module.vpc.subnet_ids
 }
 
 module "WAF" {
@@ -18,8 +24,8 @@ module "S3" {
 # }
 
 module "cloudfront" {
-  source                      = "../modules/cloudfront"
-  domain_name                 = var.domain_name
+  source      = "../modules/cloudfront"
+  domain_name = var.domain_name
   # certificate_arn             = module.acm.certificate_arn
   bucket_origin_id            = module.S3.frontend_bucket_id
   bucket_regional_domain_name = module.S3.frontend_bucket_rdn
