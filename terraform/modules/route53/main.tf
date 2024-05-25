@@ -28,5 +28,5 @@ resource "aws_route53_record" "cname_route53_record" {
   name    = "api.${var.domain_name}"
   type    = "CNAME"
   ttl     = 900
-  records = [aws_lb.MYALB.dns_name]
+  records = [var.alb_domain_name]
 }

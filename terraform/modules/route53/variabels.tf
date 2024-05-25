@@ -6,3 +6,7 @@ variable "domain_name" {
 variable "cdn" {
   description = "The cloudfront distribution for the primary deployment"
 }
+
+variable "alb_domain_name" {
+  type = string
+}

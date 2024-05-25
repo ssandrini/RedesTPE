@@ -13,10 +13,11 @@ module "api" {
 # Static website hosting (using R53 + CDN + S3)
 
 module "route53" {
-  source      = "../modules/route53"
-  domain_name = var.domain_name
-  cdn         = module.cloudfront.cloudfront_distribution
-  depends_on  = [module.cloudfront]
+  source          = "../modules/route53"
+  domain_name     = var.domain_name
+  cdn             = module.cloudfront.cloudfront_distribution
+  depends_on      = [module.cloudfront]
+  alb_domain_name = module.api.api_domain_name
 }
 
 module "S3" {
