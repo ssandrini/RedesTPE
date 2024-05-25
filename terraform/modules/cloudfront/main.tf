@@ -8,9 +8,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     }
   }
 
-  # aliases = var.aliases
-
-  # TODO: para el final, agregamos la integración de cloudfront con API Gateway.
+  aliases = var.aliases
 
   enabled             = true
   is_ipv6_enabled     = true

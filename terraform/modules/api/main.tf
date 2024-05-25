@@ -83,7 +83,6 @@ resource "aws_launch_template" "asg_template" {
 
   network_interfaces {
     associate_public_ip_address = false
-    subnet_id                   = var.subnets_ids[2]
     security_groups             = [aws_security_group.sg_ec2.id]
   }
 
@@ -103,7 +102,7 @@ resource "aws_autoscaling_group" "asg" {
 
   target_group_arns = [aws_lb_target_group.alb_tg.arn]
 
-  vpc_zone_identifier = [var.subnets_ids[2]]
+  vpc_zone_identifier = [var.subnets_ids[2], var.subnets_ids[3]]
 
   launch_template {
     id      = aws_launch_template.asg_template.id

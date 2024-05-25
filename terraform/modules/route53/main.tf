@@ -27,6 +27,6 @@ resource "aws_route53_record" "cname_route53_record" {
   zone_id = data.aws_route53_zone.prebuilt_hosted_zone.zone_id
   name    = "api.${var.domain_name}"
   type    = "CNAME"
-  ttl     = 900
+  ttl     = 60
   records = [var.alb_domain_name]
 }
