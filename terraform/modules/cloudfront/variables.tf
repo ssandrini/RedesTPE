@@ -18,10 +18,10 @@ variable "bucket_origin_id" {
   type        = string
 }
 
-# variable "certificate_arn" {
-#   description = "Certificate ARN"
-#   type        = string
-# }
+variable "certificate_arn" {
+  description = "Certificate ARN"
+  type        = string
+}
 
 variable "aliases" {
   description = "Alternate domain names"

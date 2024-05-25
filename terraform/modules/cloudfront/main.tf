@@ -44,10 +44,10 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = true # false
-    # acm_certificate_arn            = var.certificate_arn
-    # minimum_protocol_version       = "TLSv1.2_2021"
-    # ssl_support_method             = "sni-only"
+    cloudfront_default_certificate = false
+    acm_certificate_arn            = var.certificate_arn
+    minimum_protocol_version       = "TLSv1.2_2021"
+    ssl_support_method             = "sni-only"
   }
 
   web_acl_id = var.waf_arn
