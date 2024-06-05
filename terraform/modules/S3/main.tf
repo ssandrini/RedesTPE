@@ -20,6 +20,15 @@ module "frontend_bucket" {
     target_bucket = module.logs_bucket.s3_bucket_id
     target_prefix = "logs/"
   }
+
+  cors_rule = [
+    {
+      allowed_methods = ["GET", "POST"],
+      allowed_origins = ["*"],
+      allowed_headers = ["*"],
+      expose_headers  = ["Access-Control-Allow-Origin"]
+    }
+  ]
 }
 
 module "logs_bucket" {
