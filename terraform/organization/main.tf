@@ -93,3 +93,7 @@ module "acm" {
   source      = "../modules/acm"
   domain_name = var.domain_name
 }
+
+module "rds" {
+  source = "../modules/rds"
+}
