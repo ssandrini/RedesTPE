@@ -14,3 +14,7 @@ variable "alb_domain_name" {
 variable "secondary_alb_domain_name" {
   type = string
 }
+
+variable "on_premise_load_balancer_ip" {
+  type = string
+}

@@ -59,12 +59,13 @@ module "api_failover" {
 # Static website hosting (using R53 + CDN + S3)
 
 module "route53" {
-  source                    = "../modules/route53"
-  domain_name               = var.domain_name
-  cdn                       = module.cloudfront.cloudfront_distribution
-  depends_on                = [module.cloudfront]
-  alb_domain_name           = module.api.api_domain_name
-  secondary_alb_domain_name = module.api_failover.api_domain_name
+  source                      = "../modules/route53"
+  domain_name                 = var.domain_name
+  cdn                         = module.cloudfront.cloudfront_distribution
+  depends_on                  = [module.cloudfront]
+  alb_domain_name             = module.api.api_domain_name
+  secondary_alb_domain_name   = module.api_failover.api_domain_name
+  on_premise_load_balancer_ip = "192.168.56.40"
 }
 
 module "S3" {

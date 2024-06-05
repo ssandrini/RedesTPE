@@ -74,3 +74,11 @@ resource "aws_route53_health_check" "secondary" {
     Name = "route53-secondary-health-check"
   }
 }
+
+resource "aws_route53_record" "internal_record" {
+  zone_id = data.aws_route53_zone.prebuilt_hosted_zone.zone_id
+  name    = "internal.${var.domain_name}"
+  type    = "A"
+  ttl     = 300
+  records = [var.on_premise_load_balancer_ip]
+}
