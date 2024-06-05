@@ -10,3 +10,8 @@ variable "main_vpc_id" {
 variable "subnets_ids" {
   type = list(any)
 }
+
+variable "instance_id" {
+  type = string
+  default = "ami-00c39f71452c08778"
+}

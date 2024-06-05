@@ -10,3 +10,7 @@ variable "cdn" {
 variable "alb_domain_name" {
   type = string
 }
+
+variable "secondary_alb_domain_name" {
+  type = string
+}

@@ -42,6 +42,15 @@ resource "aws_security_group" "sg_ec2" {
     security_groups = [aws_security_group.sg_elb.id]
   }
 
+  ingress {
+    description      = "Allow https request from anywhere"
+    protocol         = "tcp"
+    from_port        = 443
+    to_port          = 443
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -77,7 +86,7 @@ resource "aws_lb_listener" "front_end" {
 
 resource "aws_launch_template" "asg_template" {
   name_prefix   = "redes-tpe-asg-template"
-  image_id      = "ami-00c39f71452c08778"
+  image_id      = var.instance_id
   instance_type = "t2.micro"
   user_data     = filebase64(var.user_data)
 
