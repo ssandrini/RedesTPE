@@ -55,7 +55,7 @@ resource "aws_route53_health_check" "primary" {
   type              = "HTTP"
   resource_path     = "/"
   failure_threshold = "1"
-  request_interval  = "15"
+  request_interval  = "10"
 
   tags = {
     Name = "route53-primary-health-check"
@@ -68,7 +68,7 @@ resource "aws_route53_health_check" "secondary" {
   type              = "HTTP"
   resource_path     = "/"
   failure_threshold = "1"
-  request_interval  = "15"
+  request_interval  = "10"
 
   tags = {
     Name = "route53-secondary-health-check"
