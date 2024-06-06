@@ -52,16 +52,16 @@ Para el desarrollo de infraestructura cloud en AWS, utilizamos la herramienta Te
 
 Estructura del proyecto:
 
-- *modules*: módulos reutilizables
-    - *vpc*: módulo para desplegar una VPC y subredes en doble AZ, junto con las tablas de ruteo asociadas, NAT Gateway e Internet Gateway. Este módulo se reutiliza para replicar la arquitectura en dos regiones.
-    - *api*: módulo para desplegar un ALB que toma como target group un autoscaling group de EC2's con una AMI sencilla. Estas EC2 se despliegan en las subnets privadas y simplemente sirven un html estático donde muestran su IP. Este módulo se reutiliza para replicar la arquitectura en dos regiones.
+- **modules**: módulos reutilizables
+    - *VPC*: módulo para desplegar una VPC y subredes en doble AZ, junto con las tablas de ruteo asociadas, NAT Gateway e Internet Gateway. Este módulo se reutiliza para replicar la arquitectura en dos regiones.
+    - *API*: módulo para desplegar un ALB que toma como target group un autoscaling group de EC2's con una AMI sencilla. Estas EC2 se despliegan en las subnets privadas y simplemente sirven un html estático donde muestran su IP. Este módulo se reutiliza para replicar la arquitectura en dos regiones.
     - *S3*: módulo para desplegar un sitio web estático en un bucket de frontend, solamente accesible desde una distribución de Cloudfront. Se despliega con la arquitectura estándar de 3 buckets www - frontend - logs. El primero sólo redirige las requests al bucket del sitio estático (frontend).
-    - *cloudfront*: módulo para desplegar una distribución de Cloudfront, con el objetivo de acceder al sitio web estático con menor latencia.
-    - *route53*: módulo para desplegar los records de route53 en la hosted zone previamente creada. Se define una configuración de activo/pasivo para el módulo de api. Se toma como activo a la región us-east1.
-    - *acm*: módulo para desplegar los certificados SSL y sus validaciones del dominio propio utilizado.
-    - *rds*: módulo para desplegar una instancia de base de datos MySQL haciendo uso de un secret previamente creado en AWS Secret Manager.
+    - *Cloudfront*: módulo para desplegar una distribución de Cloudfront, con el objetivo de acceder al sitio web estático con menor latencia.
+    - *Route53*: módulo para desplegar los records de route53 en la hosted zone previamente creada. Se define una configuración de activo/pasivo para el módulo de api. Se toma como activo a la región us-east1.
+    - *ACM*: módulo para desplegar los certificados SSL y sus validaciones del dominio propio utilizado.
+    - *RDS*: módulo para desplegar una instancia de base de datos MySQL haciendo uso de un secret previamente creado en AWS Secret Manager.
     - *WAF*: módulo para desplegar una regla de AWS WAF que limita la cantidad de requests que puede recibir Cloudfront.
-- *organization*:
+- **organization**:
     - *main.tf*: archivo principal donde se definen los módulos que se van a utilizar en la arquitectura. Es donde se decide reutilizar los módulos de vpc y api para replicar la api en dos regiones diferentes de amazon.
     - *providers.tf*: se configura el proveedor de nube.
     - *variables.tf*: se definen las variables a utilizar, como por ejemplo el dominio propio.
