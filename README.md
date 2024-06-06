@@ -1,4 +1,7 @@
 # Infrastructure as Code
+La infrastructura como código (IaC) es una forma de gestión de la configuración que permite el manejo y el aprovisionamiento de recursos de cómputo y almacenamiento a través de archivos que son interpretables por una computadora. Estos archivos permiten acercar muchas ventajas al mundo de la configuración, como por ejemplo mantner un snapshot de la infrastructura en algún sistema de control de versiones, automatizar reglas y poder reproducir de manera fiable los amb ientes de desarrollo y producción.
+
+En el siguiente repositorio se encuentra un ejemplo práctico que permite desplegar una arquitectura mixta entre local y cloud, utilizando como base herramientas de IaC.
 
 ## Prerrequisitos
 Para ejecutar el proyecto, es necesario tener los siguientes módulos instalados de forma local:
