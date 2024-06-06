@@ -40,9 +40,12 @@ En secciones posteriores se incluye un mayor detalle de la utilización de `vagr
 Una vez ejecutado, obtenemos el despliegue de la siguiente arquitectura:
 
 <p align="center">
-  <img src="./docs/arqui.png" alt="Sublime's custom image"/>
+  <img src="./docs/arqui.png" alt="Diagrama de la arquitectura"/>
 </p>
 
+Como vemos en el diagrama, la arquitectura tiene una parte en la nube y la otra parte *on-premise*. De forma local, encontramos dos instancias de una API detrás de un *load-balancer*, que impactan los cambios en una base de datos *Postgres*.
+
+La infrstructura en la nube incluye un sitio web estático, y dos instancias de una API que está alojada en instancias EC2. Además, se provee una segunda región pasiva que actúa como failover en caso de fallas en la primera. Para mayor detalle de los módulos de AWS se puede consultar la siguiente sección.
 
 ## Terraform y AWS
 Para el desarrollo de infraestructura cloud en AWS, utilizamos la herramienta Terraform.
